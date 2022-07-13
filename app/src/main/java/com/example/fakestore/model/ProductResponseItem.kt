@@ -2,7 +2,7 @@ package com.example.fakestore.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Product(
+data class ProductResponseItem(
     @SerializedName("category")
     val category: String,
     @SerializedName("description")
