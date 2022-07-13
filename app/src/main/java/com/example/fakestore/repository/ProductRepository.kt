@@ -5,4 +5,5 @@ import javax.inject.Inject
 
 class ProductRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getAllProducts() = apiService.getAllProducts()
+    suspend fun getAllCategories() = apiService.getAllCategories()
 }

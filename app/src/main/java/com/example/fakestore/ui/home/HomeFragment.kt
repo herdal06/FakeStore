@@ -17,6 +17,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeAdapter: HomeAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -34,13 +35,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        setupRecyclerViewProducts()
+        setupRecyclerViewCategories()
 
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerViewCategories() {
+        categoryAdapter = CategoryAdapter()
+        binding.recyclerViewCategories.apply {
+            adapter = categoryAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun setupRecyclerViewProducts() {
         homeAdapter = HomeAdapter()
-        binding.recyclerView.apply {
+        binding.recyclerViewProducts.apply {
             adapter = homeAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
