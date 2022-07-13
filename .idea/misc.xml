@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/drawable/imageview_border.xml" value="0.151" />
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/activity_main.xml" value="0.15217391304347827" />
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/fragment_details.xml" value="0.1" />
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/fragment_first_screen.xml" value="0.25" />
@@ -10,7 +11,7 @@
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/fragment_second_screen.xml" value="0.25" />
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
-        <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/item_product.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/herda/AndroidStudioProjects/FakeStore/app/src/main/res/layout/item_product.xml" value="0.264" />
       </map>
     </option>
   </component>
