@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fakestore.model.Category
 import com.example.fakestore.model.ProductResponseItem
 import com.example.fakestore.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,9 +16,8 @@ const val TAG = "HomeViewModel"
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: ProductRepository) : ViewModel() {
     private val _response = MutableLiveData<List<ProductResponseItem>>()
-    private val categoryResponse = MutableLiveData<ProductResponseItem>()
     val responseProductItem: LiveData<List<ProductResponseItem>>
-    get() = _response
+        get() = _response
 
     init {
         getAllProducts()
@@ -28,7 +26,7 @@ class HomeViewModel @Inject constructor(private val repository: ProductRepositor
 
     private fun getAllCategories() = viewModelScope.launch {
         repository.getAllCategories().let { response ->
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 _response.postValue(response.body())
             } else {
                 Log.d(TAG, "getAllCategories: Error: ${response.code()}")
@@ -38,7 +36,7 @@ class HomeViewModel @Inject constructor(private val repository: ProductRepositor
 
     private fun getAllProducts() = viewModelScope.launch {
         repository.getAllProducts().let { response ->
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 _response.postValue(response.body())
             } else {
                 Log.d(TAG, "getAllProducts: Error: ${response.code()}")

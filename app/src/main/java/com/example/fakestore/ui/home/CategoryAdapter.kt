@@ -48,7 +48,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         var currentCategory = categoryList[position].category
-        currentCategory = currentCategory
         holder.binding.apply {
             textViewCategory.text = currentCategory
         }
