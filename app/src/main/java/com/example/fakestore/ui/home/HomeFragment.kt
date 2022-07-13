@@ -60,6 +60,7 @@ class HomeFragment : Fragment() {
 
         viewModel.responseProductItem.observe(requireActivity()) {
             homeAdapter.productList = it
+            categoryAdapter.categoryList = it
         }
     }
 

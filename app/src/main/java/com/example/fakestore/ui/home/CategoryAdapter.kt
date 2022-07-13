@@ -6,36 +6,35 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fakestore.databinding.ItemCategoryBinding
-import com.example.fakestore.model.Category
 import com.example.fakestore.model.ProductResponseItem
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-    inner class CategoryViewHolder(val binding: ItemCategoryBinding) :
+    class CategoryViewHolder(val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-
-    private val diffCallback = object : DiffUtil.ItemCallback<Category>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<ProductResponseItem>() {
         override fun areItemsTheSame(
-            oldItem: Category,
-            newItem: Category
+            oldItem: ProductResponseItem,
+            newItem: ProductResponseItem
         ): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.category == newItem.category
         }
 
         override fun areContentsTheSame(
-            oldItem: Category,
-            newItem: Category
+            oldItem: ProductResponseItem,
+            newItem: ProductResponseItem
         ): Boolean {
             return oldItem == newItem
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
-    var categoryList: List<Category>
+    var categoryList: List<ProductResponseItem>
         get() = differ.currentList
         set(value) {
             differ.submitList(value)
         }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
@@ -48,9 +47,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val currentCategory = categoryList[position]
+        var currentCategory = categoryList[position].category
+        currentCategory = currentCategory
         holder.binding.apply {
-            textViewCategory.text = currentCategory.name
+            textViewCategory.text = currentCategory
         }
     }
 

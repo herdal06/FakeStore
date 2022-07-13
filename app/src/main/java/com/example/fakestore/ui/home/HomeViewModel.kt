@@ -17,7 +17,7 @@ const val TAG = "HomeViewModel"
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: ProductRepository) : ViewModel() {
     private val _response = MutableLiveData<List<ProductResponseItem>>()
-    private val categoryResponse = MutableLiveData<Category>()
+    private val categoryResponse = MutableLiveData<ProductResponseItem>()
     val responseProductItem: LiveData<List<ProductResponseItem>>
     get() = _response
 
@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(private val repository: ProductRepositor
     private fun getAllCategories() = viewModelScope.launch {
         repository.getAllCategories().let { response ->
             if(response.isSuccessful) {
-                categoryResponse.postValue(response.body())
+                _response.postValue(response.body())
             } else {
                 Log.d(TAG, "getAllCategories: Error: ${response.code()}")
             }
