@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fakestore.databinding.FragmentHomeBinding
+import com.example.fakestore.model.CategoryResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +36,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerViewProducts()
         setupRecyclerViewCategories()
 
@@ -60,8 +61,11 @@ class HomeFragment : Fragment() {
 
         viewModel.responseProductItem.observe(requireActivity()) {
             homeAdapter.productList = it
-            categoryAdapter.categoryList = it
         }
+
+        viewModel.categoryResponseItem.observe(viewLifecycleOwner, Observer {
+            categoryAdapter.setList(it)
+        })
     }
 
     override fun onDestroyView() {
