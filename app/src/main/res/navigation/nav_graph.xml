@@ -21,5 +21,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

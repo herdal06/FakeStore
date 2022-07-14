@@ -49,8 +49,8 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         val currentProduct = productList[position]
 
         holder.binding.apply {
-            textViewProductName.text = currentProduct.title
-
+            textViewProductName.text = currentProduct.title.substring(0, 15) + "..."
+            textViewProductPrice.text = "$" + currentProduct.price.toString()
             imageView.loadImage(currentProduct.image)
         }
     }
