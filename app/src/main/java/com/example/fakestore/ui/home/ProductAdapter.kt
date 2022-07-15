@@ -55,6 +55,8 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.HomeViewHolder>() {
         holder.binding.apply {
             textViewProductName.text = currentProduct.title.substring(0, 15) + "..."
             textViewProductPrice.text = "$" + currentProduct.price.toString()
+            ratingBar.rating = currentProduct.rating.rate.toFloat()
+            textViewRatingCount.text = "(" + currentProduct.rating.count.toString() + ")"
             imageView.loadImage(currentProduct.image)
         }
 

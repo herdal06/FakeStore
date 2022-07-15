@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
+
     // This property is only valid between onCreateView and
 // onDestroyView.
     private val binding get() = _binding!!
@@ -44,10 +45,11 @@ class DetailsFragment : Fragment() {
         binding.apply {
             product.let { product ->
                 textViewTitleDetails.text = product.title
-                textViewPriceDetails.text = product.price.toString()
+                textViewPriceDetails.text = "$" + product.price.toString()
                 textViewCategoryDetails.text = product.category
-                textViewRate.text = product.rating.rate.toString()
+                ratingBarDetails.rating = product.rating.rate.toFloat()
                 textViewDescription.text = product.description
+                textViewRatingCountDetails.text = product.rating.count.toString() + " ratings"
                 imageViewProductDetails.loadImage(product.image)
             }
         }
