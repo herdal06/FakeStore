@@ -10,7 +10,20 @@ import com.example.fakestore.model.ProductResponseItem
 import com.example.fakestore.utils.loadImage
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-    class HomeViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
+    var productClickListener: ProductClickListener? = null
+
+    inner class HomeViewHolder(val binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            productClickListener
+            itemView.setOnClickListener {
+                productClickListener?.onProductClicked(
+                    //differ.currentList[adapterPosition]
+                    productList[adapterPosition]
+                )
+            }
+        }
+    }
 
     private val diffCallback = object : DiffUtil.ItemCallback<ProductResponseItem>() {
         override fun areItemsTheSame(
@@ -56,4 +69,8 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     }
 
     override fun getItemCount() = productList.size
+
+    interface ProductClickListener {
+        fun onProductClicked(product: ProductResponseItem?)
+    }
 }

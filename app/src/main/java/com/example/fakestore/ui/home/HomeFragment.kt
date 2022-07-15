@@ -7,18 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.fakestore.databinding.FragmentHomeBinding
-import com.example.fakestore.model.CategoryResponse
+import com.example.fakestore.model.ProductResponseItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeAdapter.ProductClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var homeAdapter: HomeAdapter
+    private var homeAdapter =  HomeAdapter()
     private lateinit var categoryAdapter: CategoryAdapter
 
     // This property is only valid between onCreateView and
@@ -30,15 +32,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerViewProducts()
         setupRecyclerViewCategories()
-
+        observeLiveData()
     }
 
     private fun setupRecyclerViewCategories() {
@@ -52,13 +53,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerViewProducts() {
-        homeAdapter = HomeAdapter()
-        binding.recyclerViewProducts.apply {
-            adapter = homeAdapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            setHasFixedSize(true)
+        homeAdapter.productClickListener = this@HomeFragment
+        binding.apply {
+            recyclerViewProducts.apply {
+                setHasFixedSize(true)
+                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                adapter = homeAdapter
+            }
         }
+    }
 
+    private fun observeLiveData() {
         viewModel.responseProductItem.observe(requireActivity()) {
             homeAdapter.productList = it
         }
@@ -71,5 +76,13 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onProductClicked(product: ProductResponseItem?) {
+        product?.let {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
+            )
+        }
     }
 }

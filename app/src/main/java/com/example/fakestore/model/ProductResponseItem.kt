@@ -1,7 +1,10 @@
 package com.example.fakestore.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ProductResponseItem(
     @SerializedName("category")
     val category: String,
@@ -17,4 +20,4 @@ data class ProductResponseItem(
     val rating: Rating,
     @SerializedName("title")
     val title: String
-)
+): Parcelable
