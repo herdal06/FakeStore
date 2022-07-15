@@ -1,10 +1,14 @@
 package com.example.fakestore.ui.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fakestore.R
 import com.example.fakestore.databinding.ItemCategoryBinding
+import com.example.fakestore.enum.ProductCategoryEnums
 import com.example.fakestore.model.CategoryResponse
+import com.example.fakestore.utils.changeCategoryColor
 
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -28,7 +32,8 @@ class CategoryAdapter :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val currentCategory = categoryList[position]
         holder.binding.apply {
-            textViewCategory.text = currentCategory.toString()
+            textViewCategory.text = currentCategory
+            currentCategory.changeCategoryColor(currentCategory,textViewCategory)
         }
     }
 
