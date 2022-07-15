@@ -1,14 +1,11 @@
 package com.example.fakestore.ui.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fakestore.R
 import com.example.fakestore.databinding.ItemCategoryBinding
-import com.example.fakestore.enum.ProductCategoryEnums
 import com.example.fakestore.model.CategoryResponse
-import com.example.fakestore.utils.changeCategoryColor
+import com.example.fakestore.utils.changeBackgroundColor
 
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -33,7 +30,7 @@ class CategoryAdapter :
         val currentCategory = categoryList[position]
         holder.binding.apply {
             textViewCategory.text = currentCategory
-            currentCategory.changeCategoryColor(currentCategory,textViewCategory)
+            textViewCategory.changeBackgroundColor(currentCategory)
         }
     }
 
