@@ -16,11 +16,11 @@ import com.example.fakestore.model.ProductResponseItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), HomeAdapter.ProductClickListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
-    private var homeAdapter =  HomeAdapter()
+    private lateinit var productAdapter: ProductAdapter
     private lateinit var categoryAdapter: CategoryAdapter
 
     // This property is only valid between onCreateView and
@@ -30,7 +30,7 @@ class HomeFragment : Fragment(), HomeAdapter.ProductClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,19 +53,19 @@ class HomeFragment : Fragment(), HomeAdapter.ProductClickListener {
     }
 
     private fun setupRecyclerViewProducts() {
-        homeAdapter.productClickListener = this@HomeFragment
+        productAdapter = ProductAdapter()
         binding.apply {
             recyclerViewProducts.apply {
                 setHasFixedSize(true)
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = homeAdapter
+                adapter = productAdapter
             }
         }
     }
 
     private fun observeLiveData() {
         viewModel.responseProductItem.observe(requireActivity()) {
-            homeAdapter.productList = it
+            productAdapter.productList = it
         }
 
         viewModel.categoryResponseItem.observe(viewLifecycleOwner, Observer {
@@ -76,13 +76,5 @@ class HomeFragment : Fragment(), HomeAdapter.ProductClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onProductClicked(product: ProductResponseItem?) {
-        product?.let {
-            findNavController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
-            )
-        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.fakestore.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,21 +10,11 @@ import com.example.fakestore.databinding.ItemProductBinding
 import com.example.fakestore.model.ProductResponseItem
 import com.example.fakestore.utils.loadImage
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-    var productClickListener: ProductClickListener? = null
+class ProductAdapter : RecyclerView.Adapter<ProductAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        init {
-            productClickListener
-            itemView.setOnClickListener {
-                productClickListener?.onProductClicked(
-                    //differ.currentList[adapterPosition]
-                    productList[adapterPosition]
-                )
-            }
-        }
-    }
+        RecyclerView.ViewHolder(binding.root)
+
 
     private val diffCallback = object : DiffUtil.ItemCallback<ProductResponseItem>() {
         override fun areItemsTheSame(
@@ -66,11 +57,13 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             textViewProductPrice.text = "$" + currentProduct.price.toString()
             imageView.loadImage(currentProduct.image)
         }
+
+        holder.itemView.setOnClickListener { mView ->
+            val direction =
+                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(currentProduct)
+            mView.findNavController().navigate(direction)
+        }
     }
 
     override fun getItemCount() = productList.size
-
-    interface ProductClickListener {
-        fun onProductClicked(product: ProductResponseItem?)
-    }
 }
