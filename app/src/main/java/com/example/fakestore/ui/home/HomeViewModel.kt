@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fakestore.model.CategoryResponse
-import com.example.fakestore.model.ProductResponseItem
+import com.example.fakestore.model.product.CategoryResponse
+import com.example.fakestore.model.product.ProductResponseItem
 import com.example.fakestore.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -23,6 +23,6 @@
             app:destination="@id/homeFragment" />
         <argument
             android:name="product"
-            app:argType="com.example.fakestore.model.ProductResponseItem" />
+            app:argType="com.example.fakestore.model.product.ProductResponseItem" />
     </fragment>
 </navigation>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.fakestore.databinding.FragmentDetailsBinding
-import com.example.fakestore.model.ProductResponseItem
+import com.example.fakestore.model.product.ProductResponseItem
 import com.example.fakestore.utils.changeBackgroundColor
 import com.example.fakestore.utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint

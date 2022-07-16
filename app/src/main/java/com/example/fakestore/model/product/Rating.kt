@@ -1,4 +1,4 @@
-package com.example.fakestore.model
+package com.example.fakestore.model.product
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

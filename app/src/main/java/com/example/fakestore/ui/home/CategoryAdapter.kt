@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fakestore.databinding.ItemCategoryBinding
-import com.example.fakestore.model.CategoryResponse
+import com.example.fakestore.model.product.CategoryResponse
 import com.example.fakestore.utils.changeBackgroundColor
 
 class CategoryAdapter :
