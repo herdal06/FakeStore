@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fakestore.databinding.ItemProductBinding
-import com.example.fakestore.model.product.ProductResponse
 import com.example.fakestore.model.product.ProductResponseItem
 import com.example.fakestore.utils.loadImage
 
