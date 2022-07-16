@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchProductFragment"
             app:destination="@id/searchProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -36,10 +39,25 @@
         <action
             android:id="@+id/action_searchProductFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_searchProductFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.fakestore.ui.splash.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.fakestore.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_searchProductFragment"
+            app:destination="@id/searchProductFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
