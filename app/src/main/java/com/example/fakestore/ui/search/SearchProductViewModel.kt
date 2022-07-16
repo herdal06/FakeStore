@@ -1,4 +1,4 @@
-package com.example.fakestore.ui.home.search
+package com.example.fakestore.ui.search
 
 import androidx.lifecycle.ViewModel
 import com.example.fakestore.repository.ProductRepository

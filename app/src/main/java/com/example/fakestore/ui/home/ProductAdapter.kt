@@ -57,7 +57,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.HomeViewHolder>() {
             textViewProductPrice.text = "$" + currentProduct.price.toString()
             ratingBar.rating = currentProduct.rating.rate.toFloat()
             textViewRatingCount.text = "(" + currentProduct.rating.count.toString() + ")"
-            imageView.loadImage(currentProduct.image)
+            imageViewProduct.loadImage(currentProduct.image)
         }
 
         holder.itemView.setOnClickListener { mView ->

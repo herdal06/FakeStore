@@ -1,4 +1,4 @@
-package com.example.fakestore.ui.home.search
+package com.example.fakestore.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.fakestore.R
 import com.example.fakestore.databinding.FragmentSearchProductBinding
 import dagger.hilt.android.AndroidEntryPoint
 
