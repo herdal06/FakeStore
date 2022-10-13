@@ -1,6 +1,12 @@
 # FakeStore
 Store app based on Fake Store API
 
+#### App Screenshots
+
+| Home | Product Detail |
+|:-:|:-:|
+| ![Fist](https://github.com/herdal06/FakeStore/blob/master/screenshots/home.png?raw=true) | ![3](https://github.com/herdal06/FakeStore/blob/master/screenshots/product_detail.png?raw=true) | ![3]
+
 Libraries Used
 --------------
 * [Architecture][10] - Start with classes for managing your UI component lifecycle and handling data
